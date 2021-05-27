@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+  namespace: test #后端服务在哪个命名空间下，这个ingress就要在哪个命名空间里面
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+spec:
+  tls: #配置了tls之后， nginx-controller 会在动配置http->https redirect，可以在nginx.conf里看到具体的参数
+  - hosts:
+    - test-ingress.abc.com
+    secretName: abc-tls
+  rules:
+  - host: test-ingress.abc.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: frontend
+          servicePort: 80
