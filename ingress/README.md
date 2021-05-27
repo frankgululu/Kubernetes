@@ -92,7 +92,7 @@ ingress的部署，需要考虑两个方面：
 缺点时由于直接利用宿主机节点的网络和端口，一个node只能部署一个ingress-controller pod.
 比较适合大并发的生产环境使用。 
 
-具体的部署文档见[DaemonSet+HostNetwork+nodeSelector][deploy/daemonset_hostnetwork/installation_guide.md]  
+具体的部署文档见[DaemonSet+HostNetwork+nodeSelector](deploy/daemonset_hostnetwork/installation_guide.md)  
 
 #### Deployment+NodePort 模式的Service
 
