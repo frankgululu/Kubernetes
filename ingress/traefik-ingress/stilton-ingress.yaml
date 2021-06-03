@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: stilton-ingress 
+  namespace: test 
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: http, https
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  rules:
+  - host: test-stilton.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: stilton 
+          servicePort: http
+  tls:
+   - secretName: test-stilton 
+
